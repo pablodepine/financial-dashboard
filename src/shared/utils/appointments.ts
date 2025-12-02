@@ -1,4 +1,9 @@
-import { Appointment, ExpenseAppointment, IncomeAppointment, AppointmentSummary } from '@/types';
+import type {
+  Appointment,
+  ExpenseAppointment,
+  IncomeAppointment,
+  AppointmentSummary,
+} from '@/types';
 import { ExpenseAppointmentEnum, IncomeAppointmentEnum } from '@/types/enums';
 
 export const isExpenseAppointment = (

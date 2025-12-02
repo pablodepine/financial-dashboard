@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Appointment } from '@/types';
+import type { Appointment } from '@/types';
 
 interface AppointmentState {
   appointments: Appointment[];
@@ -22,7 +22,9 @@ export const useAppointmentStore = create<AppointmentState>((set) => ({
     set((state) => ({ appointments: [...state.appointments, appointment] })),
   updateAppointment: (id, updates) =>
     set((state) => ({
-      appointments: state.appointments.map((a) => (a.id === id ? { ...a, ...updates } : a)),
+      appointments: state.appointments.map((a) =>
+        a.id === id ? ({ ...a, ...updates } as Appointment) : a
+      ),
     })),
   deleteAppointment: (id) =>
     set((state) => ({

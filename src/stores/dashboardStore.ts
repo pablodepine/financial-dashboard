@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Dashboard } from '@/types';
+import type { Dashboard } from '@/types';
 
 interface DashboardState {
   dashboards: Dashboard[];
