@@ -1,5 +1,7 @@
 import { TrendingUp, TrendingDown, DollarSign, Calendar } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/shared/components/ui';
+import { formatCurrency } from '@/shared/utils';
+import { useAppointments } from '@/features/appointments/hooks/useAppointments';
 import type { Dashboard } from '@/types';
 
 interface DashboardStatsProps {
@@ -7,29 +9,42 @@ interface DashboardStatsProps {
 }
 
 export const DashboardStats = ({ dashboard }: DashboardStatsProps) => {
-  // TODO: Calculate real stats from appointments when feature is implemented
+  const { appointments } = useAppointments(dashboard.id);
+
+  // Calculate real stats from appointments
+  const totalIncome = appointments
+    .filter(apt => !('paymentMethod' in apt)) // Income appointments don't have paymentMethod
+    .reduce((sum, apt) => sum + apt.value, 0);
+
+  const totalExpenses = appointments
+    .filter(apt => 'paymentMethod' in apt) // Expense appointments have paymentMethod
+    .reduce((sum, apt) => sum + apt.value, 0);
+
+  const balance = totalIncome - totalExpenses;
+  const totalAppointments = appointments.length;
+
   const stats = [
     {
       title: 'Total de Receitas',
-      value: 'R$ 0,00',
+      value: formatCurrency(totalIncome),
       icon: TrendingUp,
       color: 'text-green-600',
     },
     {
       title: 'Total de Despesas',
-      value: 'R$ 0,00',
+      value: formatCurrency(totalExpenses),
       icon: TrendingDown,
       color: 'text-red-600',
     },
     {
       title: 'Saldo Atual',
-      value: 'R$ 0,00',
+      value: formatCurrency(balance),
       icon: DollarSign,
-      color: 'text-blue-600',
+      color: balance >= 0 ? 'text-green-600' : 'text-red-600',
     },
     {
       title: 'Appointments',
-      value: '0',
+      value: totalAppointments.toString(),
       icon: Calendar,
       color: 'text-purple-600',
     },
@@ -46,11 +61,11 @@ export const DashboardStats = ({ dashboard }: DashboardStatsProps) => {
           <CardContent>
             <div className="text-2xl font-bold">{stat.value}</div>
             <p className="text-xs text-muted-foreground">
-              {stat.title === 'Appointments' ? 'Este mês' : 'Últimos 30 dias'}
+              {stat.title === 'Appointments' ? 'Total cadastrados' : 'Valor acumulado'}
             </p>
           </CardContent>
         </Card>
       ))}
     </div>
   );
-};
+};;
