@@ -20,9 +20,9 @@ export const LineChart = ({ data, title, description, className = '' }: LineChar
 
   if (data.length === 0 || maxValue === 0) {
     return (
-      <div className={`bg-card rounded-lg border p-6 ${className}`}>
-        <h3 className="text-lg font-semibold mb-4">{title}</h3>
-        <div className="flex items-center justify-center h-64 text-muted-foreground">
+      <div className={`bg-gradient-to-br from-white to-slate-50/50 dark:from-slate-900 dark:to-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50 p-6 shadow-lg ${className}`}>
+        <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-4">{title}</h3>
+        <div className="flex items-center justify-center h-64 text-slate-500 dark:text-slate-400">
           Nenhum dado disponível
         </div>
       </div>
@@ -53,12 +53,12 @@ export const LineChart = ({ data, title, description, className = '' }: LineChar
     .join(' ');
 
   return (
-    <div className={`bg-card rounded-lg border p-6 ${className}`}>
-      <div className="flex items-center gap-2 mb-4">
-        <h3 className="text-lg font-semibold">{title}</h3>
+    <div className={`bg-gradient-to-br from-white to-slate-50/50 dark:from-slate-900 dark:to-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50 p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01] ${className}`}>
+      <div className="flex items-center gap-2 mb-6">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{title}</h3>
         {description && (
           <span title={description}>
-            <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
+            <Info className="h-5 w-5 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 cursor-help transition-colors" />
           </span>
         )}
       </div>
@@ -99,7 +99,7 @@ export const LineChart = ({ data, title, description, className = '' }: LineChar
                   x={padding - 10}
                   y={y + 4}
                   textAnchor="end"
-                  className="text-xs fill-muted-foreground"
+                  className="text-xs fill-slate-500 dark:fill-slate-400 font-medium"
                 >
                   {formatCurrency(value)}
                 </text>
@@ -110,7 +110,8 @@ export const LineChart = ({ data, title, description, className = '' }: LineChar
                   y2={y}
                   stroke="currentColor"
                   strokeWidth="0.5"
-                  opacity="0.2"
+                  opacity="0.15"
+                  className="stroke-slate-300 dark:stroke-slate-600"
                 />
               </g>
             );
@@ -120,10 +121,19 @@ export const LineChart = ({ data, title, description, className = '' }: LineChar
           <path
             d={pathData}
             fill="none"
-            stroke="hsl(var(--primary))"
-            strokeWidth="2"
+            stroke="url(#lineGradient)"
+            strokeWidth="3"
             className="drop-shadow-sm"
           />
+
+          {/* Gradient definition */}
+          <defs>
+            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#3b82f6" />
+              <stop offset="50%" stopColor="#06b6d4" />
+              <stop offset="100%" stopColor="#8b5cf6" />
+            </linearGradient>
+          </defs>
 
           {/* Data points */}
           {data.map((point, index) => {
@@ -134,9 +144,11 @@ export const LineChart = ({ data, title, description, className = '' }: LineChar
                 key={index}
                 cx={x}
                 cy={y}
-                r="4"
-                fill="hsl(var(--primary))"
-                className="hover:r-6 transition-all cursor-pointer"
+                r="5"
+                fill="url(#lineGradient)"
+                stroke="white"
+                strokeWidth="2"
+                className="hover:r-7 transition-all cursor-pointer shadow-lg"
               />
             );
           })}
@@ -145,7 +157,7 @@ export const LineChart = ({ data, title, description, className = '' }: LineChar
         {/* X-axis labels */}
         <div className="flex justify-between mt-2 px-10">
           {data.map((point, index) => (
-            <span key={index} className="text-xs text-muted-foreground">
+            <span key={index} className="text-xs text-slate-500 dark:text-slate-400 font-medium">
               {point.name}
             </span>
           ))}

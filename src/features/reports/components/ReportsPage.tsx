@@ -4,7 +4,7 @@ import { BarChart } from './BarChart';
 import { LineChart } from './LineChart';
 import { StatCard } from './StatCard';
 import { formatCurrency } from '@/shared/utils';
-import { Info } from 'lucide-react';
+import { Info, BarChart3 } from 'lucide-react';
 
 export const ReportsPage = () => {
   const {
@@ -47,20 +47,33 @@ export const ReportsPage = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold">Relatórios Financeiros</h1>
-        <p className="text-muted-foreground mt-2">
-          Análise detalhada dos seus dados financeiros baseada nos últimos 6 meses de consultas e transações.
-        </p>
-        <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
-          <h3 className="font-medium text-blue-900 dark:text-blue-100 mb-2">💡 Sobre os Relatórios</h3>
-          <p className="text-sm text-blue-800 dark:text-blue-200">
-            Os dados são calculados automaticamente a partir dos seus agendamentos e transações.
-            Passe o mouse sobre os ícones de informação (?) para obter detalhes sobre cada métrica.
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <div className="container mx-auto px-4 py-8 space-y-8">
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm">
+              <BarChart3 className="w-4 h-4" />
+              Relatórios Financeiros
+            </div>
+          </div>
+          <h1 className="text-4xl font-bold text-gradient mb-3">
+            Análise Financeira Completa
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
+            Visualize seus dados financeiros dos últimos 6 meses com gráficos interativos,
+            métricas detalhadas e insights para tomar melhores decisões.
           </p>
+          <div className="mt-6 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50">
+            <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+              <Info className="w-4 h-4 text-primary" />
+              Sobre os Relatórios
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              Os dados são calculados automaticamente a partir dos seus agendamentos e transações.
+              Passe o mouse sobre os ícones de informação (?) para obter detalhes sobre cada métrica.
+            </p>
+          </div>
         </div>
-      </div>
 
       {/* Cards de Estatísticas */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -113,66 +126,74 @@ export const ReportsPage = () => {
       </div>
 
       {/* Resumo Detalhado */}
-      <div className="bg-card rounded-lg border p-6">
-        <h2 className="text-xl font-semibold mb-4">Resumo Detalhado</h2>
+      <div className="bg-card rounded-xl border-2 border-border/50 p-8 shadow-lg">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2 rounded-lg bg-primary/10">
+            <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-foreground">Resumo Detalhado</h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <h3 className="font-medium">Receitas por Categoria</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/20 dark:to-blue-900/20 rounded-lg p-6 border border-blue-200/50 dark:border-blue-800/50">
+            <div className="flex items-center gap-2 mb-4">
+              <h3 className="font-bold text-blue-900 dark:text-blue-100">Receitas por Categoria</h3>
               <span title="Quebra detalhada das receitas por tipo de serviço ou fonte de renda nos últimos 6 meses.">
-                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
+                <Info className="h-4 w-4 text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-100 cursor-help transition-colors" />
               </span>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-3">
               {financialSummary.incomeByCategory.map((category) => (
-                <div key={category.name} className="flex justify-between text-sm">
-                  <span>{category.name}</span>
-                  <span className="font-medium">{formatCurrency(category.value)}</span>
+                <div key={category.name} className="flex justify-between items-center py-2 px-3 rounded-md bg-white/50 dark:bg-slate-800/50">
+                  <span className="font-medium text-blue-900 dark:text-blue-100">{category.name}</span>
+                  <span className="font-bold text-blue-700 dark:text-blue-300">{formatCurrency(category.value)}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <h3 className="font-medium">Dados Mensais</h3>
+          <div className="bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-950/20 dark:to-green-900/20 rounded-lg p-6 border border-green-200/50 dark:border-green-800/50">
+            <div className="flex items-center gap-2 mb-4">
+              <h3 className="font-bold text-green-900 dark:text-green-100">Dados Mensais</h3>
               <span title="Saldo líquido (receitas - despesas) de cada mês nos últimos 6 meses.">
-                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
+                <Info className="h-4 w-4 text-green-700 dark:text-green-300 hover:text-green-900 dark:hover:text-green-100 cursor-help transition-colors" />
               </span>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-3">
               {financialSummary.monthlyData.slice(-6).map((month) => (
-                <div key={month.month} className="flex justify-between text-sm">
-                  <span>{month.month}</span>
-                  <span className="font-medium">{formatCurrency(month.balance)}</span>
+                <div key={month.month} className="flex justify-between items-center py-2 px-3 rounded-md bg-white/50 dark:bg-slate-800/50">
+                  <span className="font-medium text-green-900 dark:text-green-100">{month.month}</span>
+                  <span className="font-bold text-green-700 dark:text-green-300">{formatCurrency(month.balance)}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <h3 className="font-medium">Métricas Gerais</h3>
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-950/20 dark:to-purple-900/20 rounded-lg p-6 border border-purple-200/50 dark:border-purple-800/50">
+            <div className="flex items-center gap-2 mb-4">
+              <h3 className="font-bold text-purple-900 dark:text-purple-100">Métricas Gerais</h3>
               <span title="Médias calculadas sobre o período de 6 meses para ajudar na análise de tendências.">
-                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
+                <Info className="h-4 w-4 text-purple-700 dark:text-purple-300 hover:text-purple-900 dark:hover:text-purple-100 cursor-help transition-colors" />
               </span>
             </div>
-            <div className="space-y-1 text-sm">
-              <div className="flex justify-between">
-                <span>Média Mensal Receitas</span>
-                <span className="font-medium">
+            <div className="space-y-4">
+              <div className="flex justify-between items-center py-3 px-4 rounded-md bg-white/50 dark:bg-slate-800/50">
+                <span className="font-medium text-purple-900 dark:text-purple-100">Média Mensal Receitas</span>
+                <span className="font-bold text-purple-700 dark:text-purple-300">
                   {formatCurrency(financialSummary.averageMonthlyIncome)}
                 </span>
               </div>
-              <div className="flex justify-between">
-                <span>Média Mensal Despesas</span>
-                <span className="font-medium">
+              <div className="flex justify-between items-center py-3 px-4 rounded-md bg-white/50 dark:bg-slate-800/50">
+                <span className="font-medium text-purple-900 dark:text-purple-100">Média Mensal Despesas</span>
+                <span className="font-bold text-purple-700 dark:text-purple-300">
                   {formatCurrency(financialSummary.averageMonthlyExpenses)}
                 </span>
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

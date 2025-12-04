@@ -58,9 +58,9 @@ export const PieChart = ({ data, title, description, className = '' }: PieChartP
 
   if (total === 0) {
     return (
-      <div className={`bg-card rounded-lg border p-6 ${className}`}>
-        <h3 className="text-lg font-semibold mb-4">{title}</h3>
-        <div className="flex items-center justify-center h-64 text-muted-foreground">
+      <div className={`bg-gradient-to-br from-white to-slate-50/50 dark:from-slate-900 dark:to-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50 p-6 shadow-lg ${className}`}>
+        <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-4">{title}</h3>
+        <div className="flex items-center justify-center h-64 text-slate-500 dark:text-slate-400">
           Nenhum dado disponível
         </div>
       </div>
@@ -68,12 +68,12 @@ export const PieChart = ({ data, title, description, className = '' }: PieChartP
   }
 
   return (
-    <div className={`bg-card rounded-lg border p-6 ${className}`}>
-      <div className="flex items-center gap-2 mb-4">
-        <h3 className="text-lg font-semibold">{title}</h3>
+    <div className={`bg-gradient-to-br from-white to-slate-50/50 dark:from-slate-900 dark:to-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50 p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01] ${className}`}>
+      <div className="flex items-center gap-2 mb-6">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">{title}</h3>
         {description && (
           <span title={description}>
-            <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
+            <Info className="h-5 w-5 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 cursor-help transition-colors" />
           </span>
         )}
       </div>
@@ -96,26 +96,26 @@ export const PieChart = ({ data, title, description, className = '' }: PieChartP
 
           {/* Centro do gráfico */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-2xl font-bold">{formatCurrency(total)}</div>
-              <div className="text-sm text-muted-foreground">Total</div>
+            <div className="text-center bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-full p-4 shadow-lg">
+              <div className="text-2xl font-bold text-slate-900 dark:text-slate-100">{formatCurrency(total)}</div>
+              <div className="text-sm text-slate-600 dark:text-slate-400 font-medium">Total</div>
             </div>
           </div>
         </div>
 
         {/* Legenda */}
-        <div className="flex-1 space-y-2">
+        <div className="flex-1 space-y-3">
           {segments.map((segment, index) => (
-            <div key={index} className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+            <div key={index} className="flex items-center justify-between p-3 bg-slate-50/50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors">
+              <div className="flex items-center gap-3">
                 <div
-                  className="w-3 h-3 rounded-full"
+                  className="w-4 h-4 rounded-full shadow-sm"
                   style={{ backgroundColor: segment.fill }}
                 />
-                <span className="text-sm">{segment.name}</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{segment.name}</span>
               </div>
-              <div className="text-sm font-medium">
-                {formatCurrency(segment.value)} ({segment.percentage.toFixed(1)}%)
+              <div className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                {formatCurrency(segment.value)} <span className="text-slate-500 dark:text-slate-400 font-normal">({segment.percentage.toFixed(1)}%)</span>
               </div>
             </div>
           ))}
