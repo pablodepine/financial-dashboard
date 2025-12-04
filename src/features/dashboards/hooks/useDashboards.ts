@@ -53,7 +53,7 @@ export const useDashboards = () => {
     };
 
     fetchDashboards();
-  }, [user?.id, setDashboards, setLoading, setError]);
+  }, [user, setDashboards, setLoading, setError]);
 
   const createDashboard = async (name: string, description: string) => {
     if (!user) return;
