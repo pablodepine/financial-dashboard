@@ -7,7 +7,6 @@ interface AppointmentsSectionProps {
 
 export const AppointmentsSection = ({ dashboardId }: AppointmentsSectionProps) => {
   // TODO: Use dashboardId when implementing appointments feature
-  console.log('Dashboard ID:', dashboardId);
   return (
     <Card>
       <CardHeader>

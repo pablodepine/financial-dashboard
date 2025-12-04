@@ -8,7 +8,6 @@ interface DashboardStatsProps {
 
 export const DashboardStats = ({ dashboard }: DashboardStatsProps) => {
   // TODO: Calculate real stats from appointments when feature is implemented
-  console.log('Dashboard:', dashboard.id);
   const stats = [
     {
       title: 'Total de Receitas',
