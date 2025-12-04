@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { Button, Input, Card, CardHeader, CardTitle, CardContent } from '@/shared/components/ui';
 import { Mail, Lock, Chrome } from 'lucide-react';
@@ -7,7 +8,13 @@ export const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
-  const { signIn, signUp, signInWithGoogle, isLoading, error } = useAuth();
+  const { user, signIn, signUp, signInWithGoogle, isLoading, error } = useAuth();
+  const navigate = useNavigate();
+
+  // Redirect if already logged in
+  if (user) {
+    return <Navigate to="/dashboards" replace />;
+  }
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,6 +24,7 @@ export const LoginPage = () => {
       } else {
         await signIn(email, password);
       }
+      navigate('/dashboards');
     } catch (error) {
       // Error is handled in the hook
       console.error(error);
@@ -26,6 +34,7 @@ export const LoginPage = () => {
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle();
+      navigate('/dashboards');
     } catch (error) {
       console.error(error);
     }

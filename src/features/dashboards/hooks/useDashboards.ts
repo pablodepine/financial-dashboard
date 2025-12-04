@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
 import { useDashboardStore } from '@/stores';
 import { useAuthStore } from '@/stores';
-import { dashboardService } from '@/shared/services';
+import { activeDashboardService as dashboardService } from '@/shared/services';
 import type { Dashboard } from '@/types';
+
+// Global tracking to prevent duplicate fetches
+let fetchedForUserId: string | null = null;
+let isFetching = false;
 
 export const useDashboards = () => {
   const { user } = useAuthStore();
@@ -21,25 +25,35 @@ export const useDashboards = () => {
   } = useDashboardStore();
 
   useEffect(() => {
-    if (user) {
-      loadDashboards();
+    // Reset when user logs out
+    if (!user) {
+      fetchedForUserId = null;
+      return;
     }
-  }, [user]);
 
-  const loadDashboards = async () => {
-    if (!user) return;
-
-    try {
-      setLoading(true);
-      setError(null);
-      const dashboards = await dashboardService.getByUserId(user.id);
-      setDashboards(dashboards);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao carregar dashboards');
-    } finally {
-      setLoading(false);
+    // Skip if already fetched for this user or currently fetching
+    if (fetchedForUserId === user.id || isFetching) {
+      return;
     }
-  };
+
+    const fetchDashboards = async () => {
+      isFetching = true;
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await dashboardService.getByUserId(user.id);
+        setDashboards(data);
+        fetchedForUserId = user.id;
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Erro ao carregar dashboards');
+      } finally {
+        setLoading(false);
+        isFetching = false;
+      }
+    };
+
+    fetchDashboards();
+  }, [user?.id, setDashboards, setLoading, setError]);
 
   const createDashboard = async (name: string, description: string) => {
     if (!user) return;
@@ -89,6 +103,24 @@ export const useDashboards = () => {
     }
   };
 
+  const refresh = async () => {
+    if (!user || isFetching) return;
+    
+    isFetching = true;
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await dashboardService.getByUserId(user.id);
+      setDashboards(data);
+      fetchedForUserId = user.id;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Erro ao carregar dashboards');
+    } finally {
+      setLoading(false);
+      isFetching = false;
+    }
+  };
+
   return {
     dashboards,
     selectedDashboard,
@@ -98,6 +130,6 @@ export const useDashboards = () => {
     updateDashboard: updateDashboardInfo,
     deleteDashboard: removeDashboard,
     selectDashboard,
-    refresh: loadDashboards,
+    refresh,
   };
 };

@@ -1,26 +1,36 @@
 import { useEffect } from 'react';
 import { useAuthStore } from '@/stores';
-import { authService } from '@/shared/services';
+import { activeAuthService as authService } from '@/shared/services';
+
+// Global flag to prevent multiple initializations
+let authInitialized = false;
 
 export const useAuth = () => {
   const { user, isLoading, error, setUser, setLoading, setError, logout } = useAuthStore();
 
   useEffect(() => {
+    // Only run once globally
+    if (authInitialized) return;
+    authInitialized = true;
+
     setLoading(true);
-    const unsubscribe = authService.onAuthStateChange((user) => {
-      setUser(user);
+    const unsubscribe = authService.onAuthStateChange((authUser) => {
+      setUser(authUser);
       setLoading(false);
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+      authInitialized = false; // Reset on unmount (for HMR)
+    };
   }, [setUser, setLoading]);
 
   const signIn = async (email: string, password: string) => {
     try {
       setLoading(true);
       setError(null);
-      const user = await authService.signInWithEmail(email, password);
-      setUser(user);
+      const authUser = await authService.signInWithEmail(email, password);
+      setUser(authUser);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erro ao fazer login');
       throw err;

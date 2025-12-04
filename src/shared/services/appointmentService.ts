@@ -14,6 +14,11 @@ import type { Appointment, ExpenseAppointment, IncomeAppointment } from '@/types
 
 const COLLECTION_NAME = 'appointments';
 
+const getDb = () => {
+  if (!db) throw new Error('Firebase not initialized');
+  return db;
+};
+
 export const appointmentService = {
   async create(
     dashboardId: string,
@@ -36,7 +41,7 @@ export const appointmentService = {
       data.paymentMethod = appointment.paymentMethod;
     }
 
-    const docRef = await addDoc(collection(db, COLLECTION_NAME), data);
+    const docRef = await addDoc(collection(getDb(), COLLECTION_NAME), data);
 
     return {
       id: docRef.id,
@@ -48,7 +53,7 @@ export const appointmentService = {
   },
 
   async getByDashboardId(dashboardId: string): Promise<Appointment[]> {
-    const q = query(collection(db, COLLECTION_NAME), where('dashboardId', '==', dashboardId));
+    const q = query(collection(getDb(), COLLECTION_NAME), where('dashboardId', '==', dashboardId));
     const querySnapshot = await getDocs(q);
 
     return querySnapshot.docs.map((doc) => {
@@ -77,7 +82,7 @@ export const appointmentService = {
   },
 
   async update(id: string, updates: Partial<Appointment>): Promise<void> {
-    const docRef = doc(db, COLLECTION_NAME, id);
+    const docRef = doc(getDb(), COLLECTION_NAME, id);
     const updateData: Record<string, unknown> = {
       ...updates,
       updatedAt: Timestamp.fromDate(new Date()),
@@ -91,7 +96,7 @@ export const appointmentService = {
   },
 
   async delete(id: string): Promise<void> {
-    const docRef = doc(db, COLLECTION_NAME, id);
+    const docRef = doc(getDb(), COLLECTION_NAME, id);
     await deleteDoc(docRef);
   },
 };
