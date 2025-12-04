@@ -1,0 +1,273 @@
+{
+  "users": [
+    {
+      "id": "user-1",
+      "email": "demo@email.com",
+      "displayName": "Usuário Demo",
+      "photoURL": null
+    }
+  ],
+  "dashboards": [
+    {
+      "id": "dash-1",
+      "userId": "user-1",
+      "name": "Finanças Pessoais 2024",
+      "description": "Controle de gastos pessoais e investimentos do ano de 2024",
+      "createdAt": "2024-01-15T10:00:00.000Z",
+      "updatedAt": "2024-11-20T14:30:00.000Z"
+    },
+    {
+      "id": "dash-2",
+      "userId": "user-1",
+      "name": "Apartamento",
+      "description": "Despesas e custos relacionados ao apartamento",
+      "createdAt": "2024-03-10T08:00:00.000Z",
+      "updatedAt": "2024-10-05T16:45:00.000Z"
+    },
+    {
+      "id": "dash-3",
+      "userId": "user-1",
+      "name": "Investimentos",
+      "description": "Acompanhamento de rendimentos e aportes em investimentos",
+      "createdAt": "2024-06-01T12:00:00.000Z",
+      "updatedAt": "2024-11-30T09:15:00.000Z"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "apt-1",
+      "dashboardId": "dash-1",
+      "name": "Salário Novembro",
+      "description": "Salário mensal",
+      "type": "Salário",
+      "date": "2024-11-05T00:00:00.000Z",
+      "value": 8500,
+      "createdAt": "2024-11-05T10:00:00.000Z",
+      "updatedAt": "2024-11-05T10:00:00.000Z"
+    },
+    {
+      "id": "apt-2",
+      "dashboardId": "dash-1",
+      "name": "Vale Alimentação",
+      "description": "Caju - Vale alimentação",
+      "type": "Caju",
+      "date": "2024-11-05T00:00:00.000Z",
+      "value": 1200,
+      "createdAt": "2024-11-05T10:00:00.000Z",
+      "updatedAt": "2024-11-05T10:00:00.000Z"
+    },
+    {
+      "id": "apt-3",
+      "dashboardId": "dash-1",
+      "name": "Supermercado Semanal",
+      "description": "Compras da semana no supermercado",
+      "type": "Mercado",
+      "paymentMethod": "Débito",
+      "date": "2024-11-08T00:00:00.000Z",
+      "value": 450,
+      "createdAt": "2024-11-08T14:00:00.000Z",
+      "updatedAt": "2024-11-08T14:00:00.000Z"
+    },
+    {
+      "id": "apt-4",
+      "dashboardId": "dash-1",
+      "name": "Netflix",
+      "description": "Assinatura mensal Netflix",
+      "type": "Lazer",
+      "paymentMethod": "Crédito",
+      "date": "2024-11-10T00:00:00.000Z",
+      "value": 55.9,
+      "createdAt": "2024-11-10T08:00:00.000Z",
+      "updatedAt": "2024-11-10T08:00:00.000Z"
+    },
+    {
+      "id": "apt-5",
+      "dashboardId": "dash-1",
+      "name": "Restaurante",
+      "description": "Jantar com amigos",
+      "type": "Lazer",
+      "paymentMethod": "PIX",
+      "date": "2024-11-15T00:00:00.000Z",
+      "value": 180,
+      "createdAt": "2024-11-15T22:00:00.000Z",
+      "updatedAt": "2024-11-15T22:00:00.000Z"
+    },
+    {
+      "id": "apt-6",
+      "dashboardId": "dash-1",
+      "name": "Farmácia",
+      "description": "Medicamentos mensais",
+      "type": "Farmacia",
+      "paymentMethod": "Débito",
+      "date": "2024-11-12T00:00:00.000Z",
+      "value": 89.5,
+      "createdAt": "2024-11-12T16:00:00.000Z",
+      "updatedAt": "2024-11-12T16:00:00.000Z"
+    },
+    {
+      "id": "apt-7",
+      "dashboardId": "dash-1",
+      "name": "Gasolina",
+      "description": "Abastecimento do carro",
+      "type": "Pessoal",
+      "paymentMethod": "Crédito",
+      "date": "2024-11-18T00:00:00.000Z",
+      "value": 250,
+      "createdAt": "2024-11-18T10:00:00.000Z",
+      "updatedAt": "2024-11-18T10:00:00.000Z"
+    },
+    {
+      "id": "apt-8",
+      "dashboardId": "dash-1",
+      "name": "Aporte Investimentos",
+      "description": "Aporte mensal em renda fixa",
+      "type": "Investimento",
+      "paymentMethod": "Transferência",
+      "date": "2024-11-06T00:00:00.000Z",
+      "value": 2000,
+      "createdAt": "2024-11-06T09:00:00.000Z",
+      "updatedAt": "2024-11-06T09:00:00.000Z"
+    },
+    {
+      "id": "apt-9",
+      "dashboardId": "dash-2",
+      "name": "Aluguel Novembro",
+      "description": "Pagamento do aluguel mensal",
+      "type": "Apartamento",
+      "paymentMethod": "Boleto",
+      "date": "2024-11-05T00:00:00.000Z",
+      "value": 2200,
+      "createdAt": "2024-11-05T08:00:00.000Z",
+      "updatedAt": "2024-11-05T08:00:00.000Z"
+    },
+    {
+      "id": "apt-10",
+      "dashboardId": "dash-2",
+      "name": "Condomínio",
+      "description": "Taxa de condomínio mensal",
+      "type": "Apartamento",
+      "paymentMethod": "Boleto",
+      "date": "2024-11-10T00:00:00.000Z",
+      "value": 650,
+      "createdAt": "2024-11-10T08:00:00.000Z",
+      "updatedAt": "2024-11-10T08:00:00.000Z"
+    },
+    {
+      "id": "apt-11",
+      "dashboardId": "dash-2",
+      "name": "Conta de Luz",
+      "description": "Fatura de energia elétrica",
+      "type": "TaxasTarifas",
+      "paymentMethod": "PIX",
+      "date": "2024-11-15T00:00:00.000Z",
+      "value": 185.3,
+      "createdAt": "2024-11-15T10:00:00.000Z",
+      "updatedAt": "2024-11-15T10:00:00.000Z"
+    },
+    {
+      "id": "apt-12",
+      "dashboardId": "dash-2",
+      "name": "Internet",
+      "description": "Mensalidade internet fibra",
+      "type": "TaxasTarifas",
+      "paymentMethod": "Débito",
+      "date": "2024-11-20T00:00:00.000Z",
+      "value": 120,
+      "createdAt": "2024-11-20T08:00:00.000Z",
+      "updatedAt": "2024-11-20T08:00:00.000Z"
+    },
+    {
+      "id": "apt-13",
+      "dashboardId": "dash-3",
+      "name": "Rendimento CDB",
+      "description": "Rendimento mensal do CDB",
+      "type": "Outros",
+      "date": "2024-11-01T00:00:00.000Z",
+      "value": 156.78,
+      "createdAt": "2024-11-01T08:00:00.000Z",
+      "updatedAt": "2024-11-01T08:00:00.000Z"
+    },
+    {
+      "id": "apt-14",
+      "dashboardId": "dash-3",
+      "name": "Dividendos ITSA4",
+      "description": "Dividendos recebidos",
+      "type": "Outros",
+      "date": "2024-11-15T00:00:00.000Z",
+      "value": 89.4,
+      "createdAt": "2024-11-15T10:00:00.000Z",
+      "updatedAt": "2024-11-15T10:00:00.000Z"
+    },
+    {
+      "id": "apt-15",
+      "dashboardId": "dash-3",
+      "name": "Aporte Tesouro Direto",
+      "description": "Compra de título do tesouro",
+      "type": "Investimento",
+      "paymentMethod": "Transferência",
+      "date": "2024-11-10T00:00:00.000Z",
+      "value": 500,
+      "createdAt": "2024-11-10T09:00:00.000Z",
+      "updatedAt": "2024-11-10T09:00:00.000Z"
+    },
+    {
+      "id": "apt-16",
+      "dashboardId": "dash-1",
+      "name": "Salário Dezembro",
+      "description": "Salário mensal",
+      "type": "Salário",
+      "date": "2024-12-05T00:00:00.000Z",
+      "value": 8500,
+      "createdAt": "2024-12-05T10:00:00.000Z",
+      "updatedAt": "2024-12-05T10:00:00.000Z"
+    },
+    {
+      "id": "apt-17",
+      "dashboardId": "dash-1",
+      "name": "Presente Olavo",
+      "description": "Presente de aniversário",
+      "type": "Olavo",
+      "paymentMethod": "PIX",
+      "date": "2024-11-25T00:00:00.000Z",
+      "value": 150,
+      "createdAt": "2024-11-25T14:00:00.000Z",
+      "updatedAt": "2024-11-25T14:00:00.000Z"
+    },
+    {
+      "id": "apt-18",
+      "dashboardId": "dash-1",
+      "name": "Supermercado Semanal 2",
+      "description": "Compras da segunda semana",
+      "type": "Mercado",
+      "paymentMethod": "Débito",
+      "date": "2024-11-15T00:00:00.000Z",
+      "value": 520,
+      "createdAt": "2024-11-15T15:00:00.000Z",
+      "updatedAt": "2024-11-15T15:00:00.000Z"
+    },
+    {
+      "id": "apt-19",
+      "dashboardId": "dash-1",
+      "name": "Supermercado Semanal 3",
+      "description": "Compras da terceira semana",
+      "type": "Mercado",
+      "paymentMethod": "Crédito",
+      "date": "2024-11-22T00:00:00.000Z",
+      "value": 380,
+      "createdAt": "2024-11-22T16:00:00.000Z",
+      "updatedAt": "2024-11-22T16:00:00.000Z"
+    },
+    {
+      "id": "apt-20",
+      "dashboardId": "dash-1",
+      "name": "Academia",
+      "description": "Mensalidade academia",
+      "type": "Pessoal",
+      "paymentMethod": "Débito",
+      "date": "2024-11-01T00:00:00.000Z",
+      "value": 120,
+      "createdAt": "2024-11-01T08:00:00.000Z",
+      "updatedAt": "2024-11-01T08:00:00.000Z"
+    }
+  ]
+}
