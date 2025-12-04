@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, LogOut } from 'lucide-react';
+import { Plus, LogOut, BarChart3 } from 'lucide-react';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useDashboards } from '../hooks/useDashboards';
 import { DashboardCard } from './DashboardCard';
@@ -54,6 +54,10 @@ export const DashboardsListPage = () => {
             </p>
           </div>
           <div className="flex gap-3">
+            <Button onClick={() => navigate('/reports')} variant="outline" size="lg">
+              <BarChart3 className="mr-2 h-5 w-5" />
+              Relatórios
+            </Button>
             <Button onClick={() => setIsModalOpen(true)} size="lg">
               <Plus className="mr-2 h-5 w-5" />
               Novo Dashboard

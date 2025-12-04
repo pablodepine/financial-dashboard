@@ -3,6 +3,7 @@ import { useAuth } from '@/features/auth/hooks/useAuth';
 import { LoginPage } from '@/features/auth/components/LoginPage';
 import { DashboardsListPage } from '@/features/dashboards/components/DashboardsListPage';
 import { DashboardDetailPage } from '@/features/dashboards/components/DashboardDetailPage';
+import { ReportsPage } from '@/features/reports/components/ReportsPage';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, isLoading } = useAuth();
@@ -40,6 +41,14 @@ export const AppRouter = () => {
           element={
             <ProtectedRoute>
               <DashboardDetailPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/reports"
+          element={
+            <ProtectedRoute>
+              <ReportsPage />
             </ProtectedRoute>
           }
         />
