@@ -1,4 +1,5 @@
 import { formatCurrency } from '@/shared/utils';
+import { Info } from 'lucide-react';
 
 interface StatCardProps {
   title: string;
@@ -8,10 +9,11 @@ interface StatCardProps {
     type: 'increase' | 'decrease';
   };
   icon?: React.ReactNode;
+  description?: string;
   className?: string;
 }
 
-export const StatCard = ({ title, value, change, icon, className = '' }: StatCardProps) => {
+export const StatCard = ({ title, value, change, icon, description, className = '' }: StatCardProps) => {
   const formatValue = (val: string | number) => {
     if (typeof val === 'string') return val;
     return formatCurrency(val);
@@ -20,8 +22,15 @@ export const StatCard = ({ title, value, change, icon, className = '' }: StatCar
   return (
     <div className={`bg-card rounded-lg border p-6 ${className}`}>
       <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-medium text-muted-foreground">{title}</p>
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <p className="text-sm font-medium text-muted-foreground">{title}</p>
+            {description && (
+              <span title={description}>
+                <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
+              </span>
+            )}
+          </div>
           <p className="text-2xl font-bold">{formatValue(value)}</p>
 
           {change && (

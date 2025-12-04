@@ -1,4 +1,5 @@
 import { formatCurrency } from '@/shared/utils';
+import { Info } from 'lucide-react';
 
 interface BarChartData {
   name: string;
@@ -9,10 +10,11 @@ interface BarChartData {
 interface BarChartProps {
   data: BarChartData[];
   title: string;
+  description?: string;
   className?: string;
 }
 
-export const BarChart = ({ data, title, className = '' }: BarChartProps) => {
+export const BarChart = ({ data, title, description, className = '' }: BarChartProps) => {
   const maxValue = Math.max(...data.map(item => item.value), 0);
 
   if (maxValue === 0) {
@@ -28,7 +30,14 @@ export const BarChart = ({ data, title, className = '' }: BarChartProps) => {
 
   return (
     <div className={`bg-card rounded-lg border p-6 ${className}`}>
-      <h3 className="text-lg font-semibold mb-4">{title}</h3>
+      <div className="flex items-center gap-2 mb-4">
+        <h3 className="text-lg font-semibold">{title}</h3>
+        {description && (
+          <span title={description}>
+            <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
+          </span>
+        )}
+      </div>
 
       <div className="space-y-4">
         {data.map((item, index) => {

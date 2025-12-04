@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { formatCurrency } from '@/shared/utils';
+import { Info } from 'lucide-react';
 
 interface PieChartData {
   name: string;
@@ -11,10 +12,11 @@ interface PieChartData {
 interface PieChartProps {
   data: PieChartData[];
   title: string;
+  description?: string;
   className?: string;
 }
 
-export const PieChart = ({ data, title, className = '' }: PieChartProps) => {
+export const PieChart = ({ data, title, description, className = '' }: PieChartProps) => {
   const total = useMemo(() => data.reduce((sum, item) => sum + item.value, 0), [data]);
 
   const segments = useMemo(() => {
@@ -67,7 +69,14 @@ export const PieChart = ({ data, title, className = '' }: PieChartProps) => {
 
   return (
     <div className={`bg-card rounded-lg border p-6 ${className}`}>
-      <h3 className="text-lg font-semibold mb-4">{title}</h3>
+      <div className="flex items-center gap-2 mb-4">
+        <h3 className="text-lg font-semibold">{title}</h3>
+        {description && (
+          <span title={description}>
+            <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
+          </span>
+        )}
+      </div>
 
       <div className="flex flex-col lg:flex-row items-center gap-6">
         {/* Gráfico */}

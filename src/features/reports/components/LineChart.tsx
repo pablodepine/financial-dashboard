@@ -1,4 +1,5 @@
 import { formatCurrency } from '@/shared/utils';
+import { Info } from 'lucide-react';
 
 interface LineChartData {
   name: string;
@@ -9,10 +10,11 @@ interface LineChartData {
 interface LineChartProps {
   data: LineChartData[];
   title: string;
+  description?: string;
   className?: string;
 }
 
-export const LineChart = ({ data, title, className = '' }: LineChartProps) => {
+export const LineChart = ({ data, title, description, className = '' }: LineChartProps) => {
   const maxValue = Math.max(...data.map(item => item.value), 0);
   const minValue = Math.min(...data.map(item => item.value), 0);
 
@@ -52,7 +54,14 @@ export const LineChart = ({ data, title, className = '' }: LineChartProps) => {
 
   return (
     <div className={`bg-card rounded-lg border p-6 ${className}`}>
-      <h3 className="text-lg font-semibold mb-4">{title}</h3>
+      <div className="flex items-center gap-2 mb-4">
+        <h3 className="text-lg font-semibold">{title}</h3>
+        {description && (
+          <span title={description}>
+            <Info className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-help" />
+          </span>
+        )}
+      </div>
 
       <div className="relative">
         <svg
