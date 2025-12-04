@@ -15,7 +15,7 @@ export const AppointmentCard = ({ appointment, onEdit, onDelete }: AppointmentCa
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (window.confirm('Tem certeza que deseja excluir este appointment?')) {
+    if (window.confirm('Tem certeza que deseja excluir este compromisso?')) {
       onDelete();
     }
   };
@@ -46,14 +46,14 @@ export const AppointmentCard = ({ appointment, onEdit, onDelete }: AppointmentCa
             <button
               onClick={onEdit}
               className="p-1 text-muted-foreground hover:text-primary transition-colors"
-              aria-label="Editar appointment"
+              aria-label="Editar compromisso"
             >
               <Edit3 className="h-4 w-4" />
             </button>
             <button
               onClick={handleDelete}
               className="p-1 text-muted-foreground hover:text-destructive transition-colors"
-              aria-label="Deletar appointment"
+              aria-label="Deletar compromisso"
             >
               <Trash2 className="h-4 w-4" />
             </button>

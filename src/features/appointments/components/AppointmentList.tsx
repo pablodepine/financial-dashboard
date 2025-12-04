@@ -56,7 +56,7 @@ export const AppointmentList = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <h3 className="text-lg font-semibold">
-            Appointments ({appointments.length})
+            Compromissos ({appointments.length})
           </h3>
           <Button variant="outline" size="sm">
             <Filter className="h-4 w-4 mr-2" />
@@ -65,7 +65,7 @@ export const AppointmentList = ({
         </div>
         <Button onClick={() => setIsCreateModalOpen(true)}>
           <Plus className="h-4 w-4 mr-2" />
-          Novo Appointment
+          Novo Compromisso
         </Button>
       </div>
 
@@ -75,13 +75,13 @@ export const AppointmentList = ({
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
             <Plus className="h-8 w-8 text-muted-foreground" />
           </div>
-          <h3 className="text-lg font-semibold mb-2">Nenhum appointment cadastrado</h3>
+          <h3 className="text-lg font-semibold mb-2">Nenhum compromisso cadastrado</h3>
           <p className="text-muted-foreground mb-6">
-            Comece adicionando seu primeiro appointment financeiro
+            Comece adicionando seu primeiro compromisso financeiro
           </p>
           <Button onClick={() => setIsCreateModalOpen(true)}>
             <Plus className="h-4 w-4 mr-2" />
-            Criar Primeiro Appointment
+            Criar Primeiro Compromisso
           </Button>
         </div>
       ) : (

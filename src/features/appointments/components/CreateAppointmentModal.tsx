@@ -83,7 +83,7 @@ export const CreateAppointmentModal = ({ isOpen, onClose, onSubmit }: CreateAppo
   const paymentMethods = Object.values(PaymentMethodEnum);
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} title="Novo Appointment">
+    <Modal isOpen={isOpen} onClose={handleClose} title="Novo Compromisso">
       <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
         {/* Tipo: Receita ou Despesa */}
         <div>
@@ -214,7 +214,7 @@ export const CreateAppointmentModal = ({ isOpen, onClose, onSubmit }: CreateAppo
             Cancelar
           </Button>
           <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Criando...' : 'Criar Appointment'}
+            {isSubmitting ? 'Criando...' : 'Criar Compromisso'}
           </Button>
         </div>
       </form>

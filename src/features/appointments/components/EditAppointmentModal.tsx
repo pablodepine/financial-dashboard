@@ -101,7 +101,7 @@ export const EditAppointmentModal = ({ isOpen, onClose, appointment, onSubmit }:
   const paymentMethods = Object.values(PaymentMethodEnum);
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} title="Editar Appointment">
+    <Modal isOpen={isOpen} onClose={handleClose} title="Editar Compromisso">
       <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
         {/* Tipo: Receita ou Despesa */}
         <div>
